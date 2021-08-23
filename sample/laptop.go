@@ -4,7 +4,6 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 
 	"github.com/neepoo/pcbook/pb"
-
 )
 
 // NewKeyboard returns a new sample keyboard
