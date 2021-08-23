@@ -9,7 +9,13 @@ run:
 	go run main.go
 
 test:
-	go test -v -cover ./...
+	unset https_proxy http_proxy all_proxy; \
+	go test -cover ./...;
 
+server:
+	go run cmd/server/main.go -port 9000
 
-.PHONY: clean gen run test
+client:
+	go run cmd/client/main.go -address 0.0.0.0:9000
+
+.PHONY: clean gen run test client
