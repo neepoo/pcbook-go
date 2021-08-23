@@ -6,6 +6,7 @@ import (
 	"errors"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 	"io"
 	"log"
@@ -120,6 +121,8 @@ func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServe
 	}
 	imageData := bytes.Buffer{}
 	imageSize := 0
+	headers, _ := metadata.FromIncomingContext(stream.Context())
+	log.Println("get value from client context", headers.Get("name"))
 	for {
 		// check context error
 		err := contextError(stream.Context())

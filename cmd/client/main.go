@@ -5,6 +5,7 @@ import (
 	"context"
 	"flag"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 	"io"
 	"log"
@@ -95,6 +96,8 @@ func uploadImage(laptopClient pb.LaptopServiceClient, laptopID string, imagePath
 	defer file.Close()
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	// 添加header
+	ctx = metadata.AppendToOutgoingContext(ctx, "name", "wzk")
 	defer cancel()
 	stream, err := laptopClient.UploadImage(ctx)
 	if err != nil {
