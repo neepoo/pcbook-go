@@ -2,6 +2,7 @@ package service_test
 
 import (
 	"context"
+	"io"
 	"net"
 	"testing"
 
@@ -26,7 +27,7 @@ func requireSameLaptop(t *testing.T, l1, l2 *pb.Laptop)  {
 func TestClientCreateLaptop(t *testing.T) {
 	t.Parallel()
 
-	laptopServer, serverAddr := startTestLaptopServer(t)
+	laptopServer, serverAddr := startTestLaptopServer(t, service.NewInMemoryLaptopStore())
 	laptopClient := newLaptopClient(t, serverAddr)
 
 	laptop := sample.NewLaptop()
@@ -48,14 +49,77 @@ func TestClientCreateLaptop(t *testing.T) {
 
 }
 
+
+func TestClientSearchLaptop(t *testing.T) {
+	t.Parallel()
+	filter := &pb.Filter{
+		MaxPriceUsd: 2000,
+		MinCpuCores: 4,
+		MinCpuGhz:   2.5,
+		MinRam: &pb.Memory{
+			Value: 8,
+			Unit:  pb.Memory_GIGABYTE,
+		},
+	}
+	store := service.NewInMemoryLaptopStore()
+	expectedIDs := make(map[string]bool)
+	for i := 0; i < 6; i++ {
+		laptop := sample.NewLaptop()
+		switch i {
+		case 0:
+			laptop.PriceUsd = 2500
+		case 1:
+			laptop.Cpu.NumberCores = 2
+		case 2:
+			laptop.Cpu.MinGhz = 2.0
+		case 3:
+			laptop.Ram = &pb.Memory{
+				Value: 3,
+				Unit:  pb.Memory_GIGABYTE,
+			}
+		case 5, 6:
+			t.Log("------------------")
+			laptop.PriceUsd = 1900
+			laptop.Cpu.NumberCores = 4
+			laptop.Cpu.MinGhz = 2.5
+			laptop.Cpu.MaxGhz = 4.5
+			laptop.Ram = &pb.Memory{
+				Value: 16,
+				Unit:  pb.Memory_GIGABYTE,
+			}
+			expectedIDs[laptop.Id] = true
+
+		}
+		err := store.Save(laptop)
+		require.NoError(t, err)
+	}
+
+	_, serverAddr := startTestLaptopServer(t, store)
+	laptopClient := newLaptopClient(t, serverAddr)
+	req := &pb.SearchLaptopRequest{Filter: filter}
+	stream, err := laptopClient.SearchLaptop(context.Background(), req)
+	require.NoError(t, err)
+	found := 0
+	for {
+		res, err := stream.Recv()
+		if err == io.EOF{
+			break
+		}
+		require.NoError(t, err)
+		require.Contains(t, expectedIDs, res.GetLaptop().GetId())
+		found+=1
+	}
+	require.Equal(t, found, len(expectedIDs))
+}
+
 func newLaptopClient(t *testing.T, addr string) pb.LaptopServiceClient {
 	conn, err := grpc.Dial(addr, grpc.WithInsecure())
 	require.NoError(t, err)
 	return pb.NewLaptopServiceClient(conn)
 }
 
-func startTestLaptopServer(t *testing.T) (*service.LaptopServer, string) {
-	laptopServer := service.NewLaptopServer(service.NewInMemoryLaptopStore())
+func startTestLaptopServer(t *testing.T, store service.LaptopStore) (*service.LaptopServer, string) {
+	laptopServer := service.NewLaptopServer(store)
 
 	grpcServer := grpc.NewServer()
 
