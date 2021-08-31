@@ -1,27 +1,27 @@
 {
-	"id":  "a264d565-b3f1-477d-a47c-ce3e8425bdd0",
-	"brand":  "Apple",
-	"name":  "Macbook Pro",
+	"id":  "d56b5719-51cd-4b56-9fd1-c36ea872d65b",
+	"brand":  "Dell",
+	"name":  "Latitude",
 	"cpu":  {
 		"brand":  "Intel",
-		"name":  "Core i7-9750H",
-		"number_cores":  7,
-		"number_threads":  7,
-		"min_ghz":  2.963664212645413,
-		"max_ghz":  4.305711181458534
+		"name":  "Core i3-1005G1",
+		"number_cores":  5,
+		"number_threads":  10,
+		"min_ghz":  3.1054235580626797,
+		"max_ghz":  4.774536016402726
 	},
 	"ram":  {
-		"value":  "26",
+		"value":  "7",
 		"unit":  "GIGABYTE"
 	},
 	"gpus":  [
 		{
 			"brand":  "AMD",
 			"name":  "RX 590",
-			"min_ghz":  1.373535826827343,
-			"max_ghz":  1.7682591641890062,
+			"min_ghz":  1.4241608712035316,
+			"max_ghz":  1.6887323212087741,
 			"memory":  {
-				"value":  "4",
+				"value":  "2",
 				"unit":  "GIGABYTE"
 			}
 		}
@@ -30,33 +30,33 @@
 		{
 			"driver":  "SSD",
 			"memory":  {
-				"value":  "609",
+				"value":  "352",
 				"unit":  "GIGABYTE"
 			}
 		},
 		{
 			"driver":  "HDD",
 			"memory":  {
-				"value":  "6",
+				"value":  "2",
 				"unit":  "TERABYTE"
 			}
 		}
 	],
 	"screen":  {
-		"size_inch":  15.906578,
+		"size_inch":  15.921207,
 		"resolution":  {
-			"width":  3173,
-			"height":  1785
+			"width":  2677,
+			"height":  1506
 		},
 		"panel":  "IPS",
 		"multitouch":  true
 	},
 	"keyboard":  {
-		"layout":  "QWERTY",
+		"layout":  "QWERTZ",
 		"backlit":  true
 	},
-	"weight_kg":  1.4135169469228308,
-	"price_usd":  1552.1590932889715,
-	"release_year":  2018,
-	"updated_at":  "2021-08-31T13:15:29.649081962Z"
+	"weight_kg":  1.8140399616724099,
+	"price_usd":  1900.6622438418299,
+	"release_year":  2016,
+	"updated_at":  "2021-08-31T13:17:46.953368384Z"
 }
