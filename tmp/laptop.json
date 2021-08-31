@@ -1,62 +1,62 @@
 {
-	"id": "e9604d12-c05b-4a32-856e-314c75a38fb7",
-	"brand": "Lenovo",
-	"name": "Thinkpad P1",
-	"cpu": {
-		"brand": "AMD",
-		"name": "Ryzen 3 PRO 3200GE",
-		"number_cores": 5,
-		"number_threads": 10,
-		"min_ghz": 2.9337514414172468,
-		"max_ghz": 3.3789672454374777
+	"id":  "a264d565-b3f1-477d-a47c-ce3e8425bdd0",
+	"brand":  "Apple",
+	"name":  "Macbook Pro",
+	"cpu":  {
+		"brand":  "Intel",
+		"name":  "Core i7-9750H",
+		"number_cores":  7,
+		"number_threads":  7,
+		"min_ghz":  2.963664212645413,
+		"max_ghz":  4.305711181458534
 	},
-	"ram": {
-		"value": "56",
-		"unit": "GIGABYTE"
+	"ram":  {
+		"value":  "26",
+		"unit":  "GIGABYTE"
 	},
-	"gpus": [
+	"gpus":  [
 		{
-			"brand": "Nvidia",
-			"name": "RTX 2060",
-			"min_ghz": 1.3620931212845035,
-			"max_ghz": 1.4918196541205473,
-			"memory": {
-				"value": "6",
-				"unit": "GIGABYTE"
+			"brand":  "AMD",
+			"name":  "RX 590",
+			"min_ghz":  1.373535826827343,
+			"max_ghz":  1.7682591641890062,
+			"memory":  {
+				"value":  "4",
+				"unit":  "GIGABYTE"
 			}
 		}
 	],
-	"storages": [
+	"storages":  [
 		{
-			"driver": "SSD",
-			"memory": {
-				"value": "581",
-				"unit": "GIGABYTE"
+			"driver":  "SSD",
+			"memory":  {
+				"value":  "609",
+				"unit":  "GIGABYTE"
 			}
 		},
 		{
-			"driver": "HDD",
-			"memory": {
-				"value": "6",
-				"unit": "TERABYTE"
+			"driver":  "HDD",
+			"memory":  {
+				"value":  "6",
+				"unit":  "TERABYTE"
 			}
 		}
 	],
-	"screen": {
-		"size_inch": 15.250192,
-		"resolution": {
-			"width": 3969,
-			"height": 2233
+	"screen":  {
+		"size_inch":  15.906578,
+		"resolution":  {
+			"width":  3173,
+			"height":  1785
 		},
-		"panel": "IPS",
-		"multitouch": false
+		"panel":  "IPS",
+		"multitouch":  true
 	},
-	"keyboard": {
-		"layout": "AZERTY",
-		"backlit": true
+	"keyboard":  {
+		"layout":  "QWERTY",
+		"backlit":  true
 	},
-	"weight_kg": 1.583709859934598,
-	"price_usd": 2334.5552973410418,
-	"release_year": 2018,
-	"updated_at": "2021-08-23T09:04:06.964493576Z"
+	"weight_kg":  1.4135169469228308,
+	"price_usd":  1552.1590932889715,
+	"release_year":  2018,
+	"updated_at":  "2021-08-31T13:15:29.649081962Z"
 }

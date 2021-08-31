@@ -19,9 +19,7 @@ type DiskImageStore struct {
 	imageFolder string
 	images      map[string]*ImageInfo
 }
-
 func (d *DiskImageStore) Save(laptopID string, imageType string, imageData bytes.Buffer) (string, error) {
-
 	imageID, err := uuid.NewRandom()
 	if err != nil {
 		return "", fmt.Errorf("cannot genearate uuid %v", err)

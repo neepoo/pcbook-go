@@ -32,7 +32,7 @@ func (store *InMemoryLaptopStore) Search(
 	defer store.mutex.RUnlock()
 	for _, laptop := range store.data {
 		// heavy processing
-		if ctx.Err() == context.Canceled || ctx.Err() == context.DeadlineExceeded{
+		if errors.Is(ctx.Err(), context.Canceled) || ctx.Err() == context.DeadlineExceeded{
 			log.Printf("context is cancelled")
 			return errors.New("context is cancelled")
 		}
@@ -131,6 +131,5 @@ func toBit(memory *pb.Memory) uint64 {
 		return value << 43
 	default:
 		return 0
-
 	}
 }
